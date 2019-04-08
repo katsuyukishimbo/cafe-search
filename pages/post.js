@@ -1,25 +1,42 @@
 import Layout from '../components/MyLayout.js'
-import Link from 'next/link'
+import { withRouter } from 'next/router'
+import Markdown from 'react-markdown'
 
-function PostLink(props) {
-  return (
-    <li>
-      <Link href={`/post?title=${props.title}`}>
-        <a>{props.title}</a>
-      </Link>
-    </li>
-  )
-}
+export default withRouter(props => (
+  <Layout>
+    <h1>{props.router.query.title}</h1>
+    <div className="markdown">
+      <Markdown
+        source={`
+This is our blog post.
+Yes. We can have a [link](/link).
+And we can have a title as well.
 
-export default function Index() {
-  return (
-    <Layout>
-      <h1>My Blog</h1>
-      <ul>
-        <PostLink title="Hello Next.js" />
-        <PostLink title="Learn Next.js is awesome" />
-        <PostLink title="Deploy apps with Zeit" />
-      </ul>
-    </Layout>
-  )
-}
+### This is a title
+
+And here's the content.
+     `}
+      />
+    </div>
+    <style jsx global>{`
+      .markdown {
+        font-family: 'Arial';
+      }
+
+      .markdown a {
+        text-decoration: none;
+        color: blue;
+      }
+
+      .markdown a:hover {
+        opacity: 0.6;
+      }
+
+      .markdown h3 {
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+      }
+    `}</style>
+  </Layout>
+))
