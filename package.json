@@ -20,6 +20,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-hook-form": "^3.0.2",
     "react-jss": "^8.6.1",
     "rimraf": "^2.6.3",
     "typescript": "^3.4.1"
