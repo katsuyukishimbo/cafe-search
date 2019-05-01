@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { useState } from 'react'
 //import App from '../components/App'
 import {
   Paper,
@@ -11,6 +11,8 @@ import {
   Button
 } from '@material-ui/core'
 import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles'
+import useForm from 'react-hook-form'
+import firebase from 'firebase'
 
 const styles = theme => {
   return createStyles({
@@ -49,22 +51,46 @@ const styles = theme => {
 type LoginProps = WithStyles<typeof styles>
 
 const LoginForm: React.FC<LoginProps> = ({ classes }) => {
+  const { register, handleSubmit, errors } = useForm()
+  const onSubmit = data => {
+    console.log(data)
+    const email = data.email
+    const password = data.password
+    // firebase
+    //   .auth()
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .catch(function(error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code
+    //     var errorMessage = error.message
+    //     // ...
+    //   })
+  }
+
   return (
     <>
       <Paper className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+          <FormControl margin="normal" fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <Input id="email" name="email" autoComplete="email" autoFocus inputRef={register({ required: true })} />
+            {errors.email && 'email is required.'}
           </FormControl>
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal" fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              inputRef={register({ required: true })}
+            />
+            {errors.password && 'password is required.'}
           </FormControl>
-          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+          {/* <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" /> */}
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Sign in
           </Button>
