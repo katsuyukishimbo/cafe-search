@@ -50,7 +50,8 @@
     "build-app": "next build \"src/app\"",
     "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
     "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
-    "install-deps": "cd \"dist/functions\" && npm i"
+    "install-deps": "cd \"dist/functions\" && npm i",
+    "test": "jest --verbose --bail"
   },
   "repository": {
     "type": "git",
