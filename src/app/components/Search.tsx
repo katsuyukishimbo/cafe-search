@@ -8,7 +8,7 @@ interface SearchFormProps {
   selectItems?: string[]
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ label, name, defaultValue, selectItems }) => {
+const SearchForm: React.FC<SearchFormProps> = ({ label, name, defaultValue, selectItems }: SearchFormProps) => {
   const [text, setText] = useState(defaultValue)
 
   const handleChangeText = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
