@@ -7,9 +7,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import ProTip from '../components/ProTip';
-import Link from '../components/Link';
-
 import {CounterContext} from "../contexts/counter"
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Counter() {
+const Counter = () => {
 
   const {
     count,
@@ -69,14 +66,9 @@ export default function Counter() {
 
           </Grid>
         </Grid>
-
-        <Typography variant="body1" component="h6" gutterBottom>
-          <Link href="/">Go to the main page</Link>
-        </Typography>
-
-        <ProTip/>
-
       </Box>
     </Container>
   );
 }
+
+export default Counter
