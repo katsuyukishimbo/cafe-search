@@ -1,67 +1,43 @@
 {
   "name": "cafe-search",
   "version": "1.0.0",
-  "description": "Next.js SSR app on Firebase Cloud Functions",
+  "description": "To search cafe",
   "engines": {
     "node": "8"
   },
+  "scripts": {
+    "dev": "next \"src/app/\"",
+    "preserve": "npm run build-static && npm run build-public && npm run build-funcs && npm run build-app && npm run copy-deps && npm run install-deps",
+    "serve": "cross-env NODE_ENV=production firebase serve",
+    "predeploy": "npm run build-static && npm run build-public && npm run build-funcs && npm run build-app && npm run copy-deps",
+    "deploy": "firebase deploy",
+    "clean": "rimraf \"dist/functions/**\" && rimraf \"dist/public\"",
+    "build-static": "cpx \"src/app/static/**/*.*\" \"src/public/static\" -C -u",
+    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
+    "build-funcs": "babel \"src/functions\" --out-dir \"dist/functions\"",
+    "build-app": "next build \"src/app/\"",
+    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
+    "install-deps": "cd \"dist/functions\" && npm i"
+  },
   "dependencies": {
-    "@material-ui/core": "^4.0.0-alpha.8",
-    "@material-ui/icons": "^4.0.0-alpha.8",
-    "@material-ui/styles": "^4.0.0-alpha.8",
-    "@types/next": "^8.0.3",
-    "@types/react": "^16.8.13",
+    "@material-ui/core": "^4.0.1",
+    "@material-ui/icons": "^4.0.1",
+    "@material-ui/styles": "^4.0.1",
     "@zeit/next-typescript": "^1.1.1",
-    "cpx": "^1.5.0",
-    "cross-env": "^5.2.0",
-    "firebase-admin": "7.2.0",
-    "firebase-functions": "^2.2.1",
-    "jss": "^9.8.7",
-    "next": "^8.0.4",
+    "clsx": "^1.0.4",
+    "firebase": "^5.10.0",
+    "firebase-admin": "^7.3.0",
+    "firebase-functions": "^2.3.0",
+    "next": "^8.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hook-form": "^3.0.2",
-    "react-jss": "^8.6.1",
-    "rimraf": "^2.6.3",
-    "typescript": "^3.4.1"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.7.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.4.1",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-standard": "^4.0.0",
-    "jest": "^24.7.0",
-    "prettier": "^1.16.4"
-  },
-  "scripts": {
-    "dev": "next src/app",
-    "preserve": "npm run build-public && npm run build-functions && npm run build-app && npm run copy-deps && npm run install-deps",
-    "serve": "cross-env NODE_ENV=production firebase serve",
-    "deploy": "firebase deploy",
-    "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
-    "build-app": "next build \"src/app\"",
-    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
-    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
-    "install-deps": "cd \"dist/functions\" && npm i",
-    "test": "jest --verbose --bail"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/katsuyukishimbo/cafe-search.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/katsuyukishimbo/cafe-search/issues"
-  },
-  "homepage": "https://github.com/katsuyukishimbo/cafe-search#readme"
+    "@babel/cli": "^7.4.3",
+    "cpx": "^1.5.0",
+    "cross-env": "^5.2.0",
+    "firebase-tools": "^6.7.0",
+    "rimraf": "^2.6.3"
+  }
 }
