@@ -1,39 +1,28 @@
-import React, {useContext} from 'react';
+import React, { useState } from 'react'
 
-import {makeStyles} from '@material-ui/styles';
-import Container from '@material-ui/core/Container';
-import Grid from "@material-ui/core/Grid";
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
-import {CounterContext} from "../contexts/counter"
+import { makeStyles } from '@material-ui/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   button: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(1)
   }
-}));
+}))
 
 const Counter = () => {
-
-  const {
-    count,
-    reset,
-    increment,
-    decrement,
-  } = useContext(CounterContext);
-
-  const classes = useStyles();
+  const [count, setCount] = useState(0)
+  const increment = () => setCount(prevCount => prevCount + 1)
+  const decrement = () => setCount(prevCount => prevCount - 1)
+  const reset = () => setCount(0)
+  const classes = useStyles()
 
   return (
     <Container maxWidth="sm">
       <Box my={4}>
-
-        <Typography variant="h4" component="h1" gutterBottom>
-          Next.js v4-alpha example
-        </Typography>
-
         <Grid container justify="center" alignItems="center">
           <Grid item>
             <Typography variant="h4" component="h1" gutterBottom>
@@ -43,32 +32,25 @@ const Counter = () => {
         </Grid>
 
         <Grid container justify="center" alignItems="center">
-
           <Grid item>
-            <Button variant="outlined"
-                    color="primary"
-                    className={classes.button}
-                    onClick={() => increment()}>Increment</Button>
-
+            <Button variant="outlined" color="primary" className={classes.button} onClick={() => increment()}>
+              Increment
+            </Button>
           </Grid>
           <Grid item>
-            <Button variant="outlined"
-                    color="secondary"
-                    className={classes.button}
-                    onClick={() => decrement()}>Decrement</Button>
+            <Button variant="outlined" color="secondary" className={classes.button} onClick={() => decrement()}>
+              Decrement
+            </Button>
           </Grid>
           <Grid item>
-
-            <Button variant="outlined"
-                    color="default"
-                    className={classes.button}
-                    onClick={() => reset()}>Reset</Button>
-
+            <Button variant="outlined" color="default" className={classes.button} onClick={() => reset()}>
+              Reset
+            </Button>
           </Grid>
         </Grid>
       </Box>
     </Container>
-  );
+  )
 }
 
 export default Counter

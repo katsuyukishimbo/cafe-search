@@ -2,51 +2,51 @@
 /**
  * React
  */
-import React from 'react';
+import React from 'react'
 /**
  * Next
  */
-import App, {Container} from 'next/app';
+import App, { Container } from 'next/app'
 
 /**
  * Mui
  */
-import {ThemeProvider} from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../config/theme';
+import { ThemeProvider } from '@material-ui/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from '../config/theme'
 
 /**
  * Contexts
  */
-import {CounterProvider} from '../contexts/counter';
+import { Provider } from '../components/App'
 
 /**
  * MuiApp
  * ここでContextのProvider設定しておくと良い
  */
 class MuiApp extends App {
-  componentDidMount() {
-    // サーバーサイドに挿入されたCSSが存在すればを削除します
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
+  // componentDidMount() {
+  //   // サーバーサイドに挿入されたCSSが存在すればを削除します
+  //   const jssStyles = document.querySelector('#jss-server-side');
+  //   if (jssStyles && jssStyles.parentNode) {
+  //     jssStyles.parentNode.removeChild(jssStyles);
+  //   }
+  // }
 
   render() {
-    const {Component, pageProps} = this.props;
+    const { Component, pageProps } = this.props
     return (
       <Container>
         <ThemeProvider theme={theme}>
-          <CounterProvider>
+          <Provider>
             {/* Material-UIでのベースライン、ないとデザインが崩れる */}
-            <CssBaseline/>
+            <CssBaseline />
             <Component {...pageProps} />
-          </CounterProvider>
+          </Provider>
         </ThemeProvider>
       </Container>
-    );
+    )
   }
 }
 
-export default MuiApp;
+export default MuiApp
