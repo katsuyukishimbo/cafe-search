@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Counter = () => {
+const Search = () => {
   const [count, setCount] = useState(0)
   const increment = () => setCount(prevCount => prevCount + 1)
   const decrement = () => setCount(prevCount => prevCount - 1)
@@ -49,4 +49,4 @@ const Counter = () => {
   )
 }
 
-export default Counter
+export default Search

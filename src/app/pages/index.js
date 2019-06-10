@@ -1,10 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import { Container, Typography} from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import { Container, Typography } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
 
-import Link from '../components/Link';
-
+import Link from '../components/Link'
 
 export default function Index() {
   return (
@@ -17,5 +16,5 @@ export default function Index() {
         </Typography>
       </Box>
     </Container>
-  );
+  )
 }
